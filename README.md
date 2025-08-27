@@ -9,15 +9,15 @@ a simple, fast tag bot
 
 ## Customization
 
-To edit tags, edit `data/tags.json`. You can use the tags already present in this repo as an example.
+To edit tags, edit `src/data/tags.json`. You can use the tags already present in this repo as an example.
 
 ## Hosting
 
 you can simply use the files in this repo for your own projects by doing the following:
 
 - uploading the files in this repository to your host
-- editing `data/tags.json` to include your tags
-- adding a `config.json` like so:
+- editing `src/data/tags.json` to include your tags
+- adding a `src/config.json` like so:
 
 ```json
 {
@@ -33,7 +33,7 @@ you can simply use the files in this repo for your own projects by doing the fol
 
 ### Debugging
 
-You can also set these in `config.json` (for debugging)
+You can also set these in `config.json` for debugging
 
 - `debug=[boolean]` (uses the following instead of the defaults if true):
 - `debugtoken=[DEBUG_BOT_TOKEN]`

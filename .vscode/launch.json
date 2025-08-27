@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "Start bot debug",
-            "program": "${workspaceFolder}/index.js",
+            "program": "${workspaceFolder}/source/index.js",
             "request": "launch",
             "skipFiles": [
                 "<node_internals>/**"
@@ -15,7 +15,16 @@
         },
         {
             "name": "Update bot commands",
-            "program": "${workspaceFolder}/deploy-commands.js",
+            "program": "${workspaceFolder}/source/deploy-commands.js",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node"
+        },
+        {
+            "name": "Test DB",
+            "program": "${workspaceFolder}/source/data/database.js",
             "request": "launch",
             "skipFiles": [
                 "<node_internals>/**"

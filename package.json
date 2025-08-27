@@ -1,17 +1,28 @@
 {
   "name": "the-tagger",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "2.0.0",
+  "main": "source/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ."
   },
   "author": "Noobyguy775",
   "license": "MIT",
   "dependencies": {
     "discord.js": "^14.19.1",
-    "the-tagger": "file:"
+    "module-alias": "^2.2.3",
+    "mongoose": "^8.17.1"
   },
-  "keywords": [],
-  "description": ""
+  "keywords": [
+    "discord",
+    "bot",
+    "tag",
+    "autocomplete"
+  ],
+  "description": "a simple and fast discord tag bot",
+  "_moduleAliases": {
+    "@config": "source/config.json",
+    "@data": "source/data",
+    "@data/tagdata": "source/data/tags.json",
+    "@builders": "source/builders"
+  }
 }

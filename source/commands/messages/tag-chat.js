@@ -1,21 +1,23 @@
 const { EmbedBuilder, heading } = require('discord.js');
-const path = require('node:path');
-const { IncreaseTagUsage, FindTag, TagEmbedBuilder } = require(path.join(__dirname, "..", "..", "data", "js", "tags.js"));
-const debug = require(path.join(__dirname, "..", "..", "data", "tags.json"));
+const { IncreaseTagUsage, FindTagfromRegex, TagEmbedBuilder } = require('@data/js/tags');
+const { debug } = require('@config')
 
 module.exports = {
-    data: {name: 'tags-chat', type: 'message'},
+    data: {
+     name: 'tag-chat',
+     type: 'message',
+     description: 'Retrieve a tag: message variation'
+    },
     async execute(message) {
         const fetchedmember = await message.guild.members.fetch(message.member.user.id)
         if (message.args[1] == undefined) {
-            const fetchedemoji = debug ? '' : await message.client.application.emojis.fetch('1361915029578055701') // error emoji
             const embed = new EmbedBuilder()
                 .setColor(fetchedmember.displayColor || 0x5C146C)
                 .setDescription(`${heading(fetchedemoji.toString() + ' Missing parameter', 2)}\nYou need to specify regex to use.`)
             message.reply({ embeds : [embed]})
             return;
         }
-        tag = FindTag('regex', message.args.join(' '));
+        tag = FindTagfromRegex(message.args.join(' '));
         if (tag) {
             tag.member = fetchedmember
             const tagEmbed = TagEmbedBuilder(tag)

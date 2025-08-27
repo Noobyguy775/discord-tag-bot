@@ -28,13 +28,12 @@ const { SlashCommandBuilder,
     SeparatorSpacingSize,
     quote,
     chatInputApplicationCommandMention } = require('discord.js');
-const path = require('node:path');
-const { tagdata, FindTag, IncreaseTagUsage, GetTagRanking, TagEmbedBuilder } = require(path.join(__dirname, "..", "..", "data", "js", "tags.js"));
+const { tagdata, FindTag, IncreaseTagUsage, GetTagRanking, TagEmbedBuilder } = require('@data/js/tags');
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('tag')
-    .setDescription('Retrive a tag')
+    .setName('tag-slash')
+    .setDescription('Retrieve a tag')
     .addStringOption(option =>
 		option.setName('query')
 			.setDescription('Phrase to search for')
@@ -57,18 +56,18 @@ module.exports = {
             const cleaninput = input.replaceAll(/\s+/g, '-').toLowerCase();
             const namematches = [];
             const flagmatches = [];
-            const contentmatches = [];
+            const regexmatches = [];
 
             for (const [name, tag] of tagdata.entries()) {
                 if (name.toLowerCase() === cleaninput) {
                     namematches.push({ name: '✅｜' + name.replaceAll('-', ' '),  value: name })
                 } else if (tag.flags.some((text) => text.toLowerCase().includes(cleaninput)) || name.toLowerCase().includes(cleaninput)) {
                     flagmatches.push({ name: '🚩｜' + name.replaceAll('-', ' '),  value: name })
-                } else if (tag.content.toLowerCase().includes(cleaninput)) {
-                    contentmatches.push({ name: '📃｜' + name.replaceAll('-', ' '),  value: name })
+                } else if (new RegExp(tag.regex, 'i').test(cleaninput)) {
+                    regexmatches.push({ name: '🔍｜' + name.replaceAll('-', ' '),  value: name })
                 }
             }
-            outputlist.push(...namematches, ...flagmatches, ...contentmatches);
+            outputlist.push(...namematches, ...flagmatches, ...regexmatches);
         } else {
             outputlist.push(
                 ...tagdata.filter((tag) => tag.pinned)
@@ -81,7 +80,7 @@ module.exports = {
         await interaction.respond(outputlist.slice(0, 25))
     },
     async execute(interaction) {
-        const tag = FindTag('flags', interaction.options.getString('query').trim())
+        const tag = FindTag(interaction.options.getString('query').trim().toLowerCase())
         if (!tag)
             return await interaction.reply({content: 'Tag not found, make sure you used an autocomplete!',  flags: MessageFlags.Ephemeral})
 
@@ -97,7 +96,7 @@ module.exports = {
                     heading(tag.key.replaceAll('-', ' ')),
                     heading(`🚩 Flags (${chatInputApplicationCommandMention('tag', '1361918316423413832')})`, HeadingLevel.Three),
                     quote(inlineCode(tag.flags.join(', '))),
-                    heading(`🏁 Regex (${inlineCode('!tag')})`, HeadingLevel.Three),
+                    heading(`🔎 Regex (${inlineCode('!tag')})`, HeadingLevel.Three),
                     quote(inlineCode(tag.regex.replaceAll('-', ' ')))
                 ].join('\n')
             );

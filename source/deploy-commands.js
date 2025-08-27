@@ -2,7 +2,7 @@
 Some contents in this file were sourced from https://github.com/discordjs/guide, which is licensed under the MIT License, which you can find @ https://mit-license.org/
 */
 const { REST, Routes } = require('discord.js');
-const { clientId, token, debug, debugclientId, debugtoken, guildId } = require('./config.json');
+const { clientId, token, debug, debugclientId, debugtoken, guildId } = require('@config');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -20,7 +20,8 @@ for (const folder of commandFolders) {
 		const filePath = path.join(commandsPath, file);
 		const command = require(filePath);
 
-		if (command.data.type == 'message') continue; // skip message commands
+		if (command?.data?.type == 'message') continue; // skip message commands
+		
 
 		if ('data' in command && 'execute' in command) {
 			commands.push(command.data.toJSON());

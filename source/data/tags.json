@@ -11,7 +11,7 @@
     "regex": "troubleshoot|trb",
     "content": "Most common issues are fixed inside the <#1175954578605346947>.",
     "pinned": true,
-    "uses": 6
+    "uses": 4
   },
   "Adopt-Me!-macro": {
     "flags": [
@@ -22,7 +22,7 @@
     ],
     "regex": "adopt[\\s|-]?me",
     "content": "This server is only for Bee Swarm and Natro Macro. If you want the AdoptMe! Macro, You can get support or download the macro in [the discord](https://discord.gg/6f49F2MRfs).",
-    "uses": 1
+    "uses": 0
   },
   "Hourly-graphs": {
     "flags": [
@@ -31,7 +31,7 @@
     ],
     "regex": "hourly",
     "content": "Hourly graph troubleshooting: <#1190617274097356820>.\\nHow to get hourly graphs: <#1049124662665297950>",
-    "uses": 0
+    "uses": 14
   },
   "Appeals-server": {
     "flags": [
@@ -44,7 +44,7 @@
     ],
     "regex": "appeal",
     "content": "To appeal warns, mutes, or bans, go to the appeal server: https://discord.gg/75jFwWzBcJ\\nIf you have a friend who has been banned, feel free to send it to them.",
-    "uses": 0
+    "uses": 2
   },
   "Reset-@-bag-full": {
     "flags": [
@@ -55,7 +55,7 @@
     ],
     "regex": "full bag",
     "content": "If you continue gathering while your bag is full, read this: <#1190777644879458445>",
-    "uses": 0
+    "uses": 1
   },
   "Spirit-Petal-order": {
     "flags": [
@@ -66,7 +66,7 @@
     ],
     "regex": "petal|wand|belt|spirit",
     "content": "Belt > Windy\\/Wand > Wand\\/Windy.\\nGet Windy bee second if you prefer a long term investment, or get Wand second if you prefer immediate improvement.",
-    "uses": 0
+    "uses": 3
   },
   "Best-pattern-for-field-X": {
     "flags": [
@@ -79,7 +79,7 @@
     "regex": "best [pattern|settings]",
     "content": "If you have supreme saturator, use <#1059471598081560586>. If you don't, use <#1058527660323635220>",
     "pinned": true,
-    "uses": 0
+    "uses": 12
   },
   "Walk-errors": {
     "flags": [
@@ -89,7 +89,7 @@
     ],
     "regex": "wrong spot|walk error",
     "content": "Read <#1024406644010008596> if you are having trouble with paths.",
-    "uses": 0
+    "uses": 6
   },
   "Create-a-webhook": {
     "flags": [
@@ -98,31 +98,31 @@
     ],
     "regex": "webhook",
     "content": "Read <#1049124662665297950> for how to create a webhook",
-    "uses": 0
+    "uses": 13
   },
   "Field-drift": {
     "flags": [
       "field-drift",
-      "drifting",
+      "drift",
       "fdc"
     ],
-    "regex": "Field Drift|drifting|FDC",
+    "regex": "Field Drift|drift|FDC",
     "content": "If you are drifting\\/falling out of the field, Read this: <#1058527660323635220>\\n\\nIf you are using a custom pattern\\, make sure to use the pattern settings provided by the developer of the pattern.",
     "pinned": true,
-    "uses": 0
+    "uses": 17
   },
   "Natro-on-other-platforms": {
     "flags": [
-      "mac",
+      "macOS",
       "linux",
       "mobile",
       "ios",
       "andriod"
     ],
-    "regex": "mac|linux|mobile|ios|andriod|platform",
+    "regex": "macos|linux|mobile|ios|andriod|platform",
     "content": "Natro does **not** work on macOs/Linux/Mobile devices, due to AutoHotKey being built for Windows only (using DllCalls, etc.).\\n\\nThough people have successfully run natro on non-Windows systems (see <#1158942102177198192>) similar things would also probably work on other UNIX-like systems. though we can't provide support if you want to do this.",
     "pinned": true,
-    "uses": 0
+    "uses": 14
   },
   "Graphics-settings": {
     "flags": [
@@ -133,7 +133,7 @@
     ],
     "regex": "graphic|click yes|inventory|planters",
     "content": "If you are having errors such as planters not being detected, Read this: <#1175946241801195521>",
-    "uses": 0
+    "uses": 2
   },
   "GUI/Y-offset-error": {
     "flags": [
@@ -143,7 +143,7 @@
     ],
     "regex": "offset",
     "content": "Read <#1190624759277441024> to fix the Gui Offset warning.",
-    "uses": 0
+    "uses": 16
   },
   "Built-in-pattern-mechanics": {
     "flags": [
@@ -163,7 +163,7 @@
     ],
     "regex": "Image file|Image not found",
     "content": "For information about 'Image File *x* Not Found', read <#1190260073386225725>.",
-    "uses": 0
+    "uses": 1
   },
   "Install-a-path/pattern": {
     "flags": [
@@ -174,7 +174,7 @@
     ],
     "regex": "install\\s*a*\\s*(pattern|path)",
     "content": "You can learn how to install and use a path\\/pattern in Natro here: <#1331441896790298644>",
-    "uses": 0
+    "uses": 1
   },
   "Just-resets": {
     "flags": [
@@ -185,7 +185,7 @@
     "regex": "sisyphus|rst|reset",
     "content": "Read <#1190781175116079185> if you are resetting constantly at your hive",
     "pinned": true,
-    "uses": 0
+    "uses": 22
   },
   "Macroing-on-multiple-accounts": {
     "flags": [
@@ -195,7 +195,7 @@
     "regex": "rdp|multiple account",
     "content": "One way to macro multiple accounts, or macro while doing other things is Remote Desk Protocol. You can find a guide for it here: <#1069024541935927316> and support for it here: <#1070145510729601124>",
     "pinned": true,
-    "uses": 0
+    "uses": 9
   },
   "Creating-custom-patterns": {
     "flags": [
@@ -227,7 +227,7 @@
     ],
     "regex": "nectar",
     "content": "For information about nectar, read <#1071893295237693520>.",
-    "uses": 0
+    "uses": 27
   },
   "OCR-disabled": {
     "flags": [
@@ -267,7 +267,7 @@
     "regex": "reconnect|disconnect",
     "content": "If you are having trouble with disconnects/reconnecting, read <#1069926988044845146>.",
     "pinned": true,
-    "uses": 0
+    "uses": 3
   },
   "Performance-tips": {
     "flags": [
@@ -276,7 +276,7 @@
     ],
     "regex": "lag|performance",
     "content": "If you are having trouble with roblox lagging, read <#1176006072557908042>.",
-    "uses": 0
+    "uses": 4
   },
   "Virtual-Machine-(VM)-support": {
     "flags": [
@@ -305,7 +305,7 @@
     ],
     "regex": "pin",
     "content": "Your question/concern is answered in the pinned messages. The pins contain useful information about each channel and certain questions.",
-    "uses": 0
+    "uses": 1
   },
   "Inactive-honey": {
     "flags": [
@@ -315,7 +315,7 @@
     ],
     "regex": "Inactive|In-active|no honey",
     "content": "If your character resets while gathering there is a chance you are getting the inactive honey error, follow this post to fix it <#1190778953225490442>",
-    "uses": 0
+    "uses": 4
   },
   "WMI-error": {
     "flags": [
@@ -342,7 +342,7 @@
     ],
     "regex": "download|latest",
     "content": "The offical downloads for natro are <#1012613971003584602> and [GitHub](https://github.com/NatroTeam/NatroMacro/zipball/main)",
-    "uses": 0
+    "uses": 4
   },
   "Is-Natro-Macro-a-virus?": {
     "flags": [
@@ -351,7 +351,7 @@
     ],
     "regex": "safe|virus",
     "content": "<#1350979842543456256>",
-    "uses": 0
+    "uses": 4
   },
   "Missing-information": {
     "flags": [
@@ -374,7 +374,7 @@
     ],
     "regex": "rc|remote",
     "content": "The macro can be partially controled with commands sent through Discord. This feature allow you to control a variety of things\\, such as changing variables or even remote reconnection. You can find a guide and troubleshooting steps [here](https://discord.com/channels/1012610056921038868/1191570640596111461)",
-    "uses": 0
+    "uses": 2
   },
   "Videos": {
     "flags": [
@@ -385,7 +385,7 @@
     "regex": "video|wmv|mkv",
     "content": "Providing a video can help out discover the problem a LOT quicker. Here are some ways you can record videos in a format that is viewable on discord with decent quality:\\n\\n[OBS](https://cdn-fastly.obsproject.com/downloads/OBS-Studio-29.1.3-Full-Installer-x64.exe/), all around most flexible option\\n[NVIDIA screen capture](https://www.nvidia.com/en-us/geforce/geforce-experience/shadowplay/#download), built into nvidia drivers by default\\n[Xbox gamebar](https://apps.microsoft.com/store/detail/xbox-game-bar/9NZKPSTSNW4P?hl=en-us&gl=us), easily most accessible, winkey+g\\n[Gyazo](https://gyazo.com/signup), short gifs can be useful\\n[Medal](https://medal.tv/download?start), can cause false postives in antiviruses and has a lot of bloat\\n[Outplayed](https://download.overwolf.com/install/Download?Name=Outplayed&ExtensionId=cghphpbjeabdkomiphingnegihoigeggcfphdofo&Channel=web_dl_btn&utm_content=newoneapp), requires overwolf & has ads\\n\\nNote: videos in .wmv (format of roblox's built in recorder) and .mkv (default OBS video format) cannot be embedded into discord. If you do have a file with this format though, you can always convert it to .mp4 using [CloudConvert](https://cloudconvert.com;CloudConvert)",
     "pinned": true,
-    "uses": 0
+    "uses": 16
   },
   "Server-guide": {
     "flags": [
@@ -412,7 +412,7 @@
     ],
     "regex": "bug|fixes|patch",
     "content": "To get fixes for different issues, please see <#1323855424960856096>",
-    "uses": 0
+    "uses": 1
   },
   "Red-cannon": {
     "flags": [
@@ -420,7 +420,7 @@
     ],
     "regex": "red\\s?cannon",
     "content": "If your macro keeps running past the red cannon, see <#1331478808766713856>",
-    "uses": 0
+    "uses": 4
   },
   "winmgmt": {
     "flags": [
@@ -438,7 +438,7 @@
     ],
     "regex": "roblox (support|issue|problem)",
     "content": "This is not an issue with the macro, please make a ticket at [Roblox Support](https://www.roblox.com/support) or [on the DevForum](https://devforum.roblox.com/c/bug-reports/10) (if the issue is a bug and you have access)",
-    "uses": 0
+    "uses": 1
   },
   "Early-blue": {
     "flags": [
@@ -448,7 +448,7 @@
     ],
     "regex": "early\\s?blue",
     "content": "Early blue is by far the most efficent way to quickly get honey while macroing. Not only it blue cheap to start with, only needing a SSA, it is by far the best hive color to macro with as well.",
-    "uses": 0
+    "uses": 2
   },
   "Guides": {
     "flags": [
@@ -483,6 +483,6 @@
     ],
     "regex": "staff",
     "content": "Our staff are mainly selected by hand from active, helpful and knowledgeable members. You can increase your chances of getting selected by reporting members, following the rules, and helping others.\\n\\n Occasionally, we will also hold applications. In this case, everyone will be pinged in <#1033176390624870551>.",
-    "uses": 0
+    "uses": 2
   }
 }
