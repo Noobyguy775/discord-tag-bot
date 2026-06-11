@@ -2,7 +2,8 @@
 Some contents in this file were sourced from https://github.com/discordjs/guide, which is licensed under the MIT License, which you can find @ https://mit-license.org/
 */
 const { REST, Routes } = require('discord.js');
-const { clientId, token, debug, debugclientId, debugtoken, guildId } = require('./config.json');
+require('dotenv').config();
+const { clientId, token, debug, debugclientId, debugtoken, guildId } = process.env;
 const fs = require('node:fs');
 const path = require('node:path');
 

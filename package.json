@@ -10,8 +10,14 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^14.19.1",
-    "the-tagger": "file:"
+    "dotenv": "^17.4.2"
   },
   "keywords": [],
-  "description": ""
+  "description": "",
+  "type": "commonjs",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.4.1",
+    "globals": "^17.6.0"
+  }
 }

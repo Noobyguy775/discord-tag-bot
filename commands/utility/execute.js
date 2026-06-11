@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, MessageFlags } = require('discord.js');
-const { ownerId } = require('../../config.json')
+const { ownerId } = process.env;
 
 module.exports = {
 	data: new SlashCommandBuilder()
