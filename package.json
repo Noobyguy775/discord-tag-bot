@@ -9,7 +9,7 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^14.19.1",
-    "module-alias": "^2.2.3",
+    "dotenv": "^17.4.2",
     "mongoose": "^8.17.1"
   },
   "keywords": [
@@ -19,10 +19,9 @@
     "autocomplete"
   ],
   "description": "a simple and fast discord tag bot",
-  "_moduleAliases": {
-    "@config": "source/config.json",
-    "@data": "source/data",
-    "@data/tagdata": "source/data/tags.json",
-    "@builders": "source/builders"
-  }
+  "devDependencies": {
+    "@tsconfig/node-ts": "^23.6.4",
+    "@types/node": "^25.9.3"
+  },
+  "type": "module"
 }

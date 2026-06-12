@@ -1,9 +1,10 @@
-require('module-alias/register');
-const fs = require('node:fs');
-const path = require('node:path');
-const { Client, Collection, GatewayIntentBits, ActivityType } = require('discord.js');
-const { token, debug, debugtoken, db_password } = require('@config');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+import fs from 'node:fs';
+import path from 'node:path';
+
+import('dotenv').then(dotenv => dotenv.config());
+
+import { Client, Collection, GatewayIntentBits, ActivityType } from 'discord.js';
+const { token, debug, debugtoken } = process.env;
 const client = new Client({
 	intents: [
 		GatewayIntentBits.Guilds,
@@ -24,7 +25,7 @@ const client = new Client({
 client.commands = new Collection();
 client.buttons = new Collection();
 
-const { setTagData } = require('@data/js/tags');
+import { setTagData } from '@data/js/tags';
 setTagData()
 
 const foldersPath = path.join(__dirname, 'commands'); // ./commands
