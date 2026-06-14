@@ -1,5 +1,6 @@
-{
-  "Troubleshooting-Guide": {
+[
+  {
+    "name": "Troubleshooting-Guide",
     "flags": [
       "troubleshoot",
       "help",
@@ -13,7 +14,8 @@
     "pinned": true,
     "uses": 4
   },
-  "Adopt-Me!-macro": {
+  {
+    "name": "Adopt-Me!-macro",
     "flags": [
       "adoptme",
       "adopt-me",
@@ -24,7 +26,8 @@
     "content": "This server is only for Bee Swarm and Natro Macro. If you want the AdoptMe! Macro, You can get support or download the macro in [the discord](https://discord.gg/6f49F2MRfs).",
     "uses": 0
   },
-  "Hourly-graphs": {
+  {
+    "name": "Hourly-graphs",
     "flags": [
       "hourly",
       "graph"
@@ -33,7 +36,8 @@
     "content": "Hourly graph troubleshooting: <#1190617274097356820>.\\nHow to get hourly graphs: <#1049124662665297950>",
     "uses": 14
   },
-  "Appeals-server": {
+  {
+    "name": "Appeals-server",
     "flags": [
       "appeal",
       "punishment",
@@ -46,7 +50,8 @@
     "content": "To appeal warns, mutes, or bans, go to the appeal server: https://discord.gg/75jFwWzBcJ\\nIf you have a friend who has been banned, feel free to send it to them.",
     "uses": 2
   },
-  "Reset-@-bag-full": {
+  {
+    "name": "Reset-@-bag-full",
     "flags": [
       "full-bag",
       "bag-full",
@@ -57,7 +62,8 @@
     "content": "If you continue gathering while your bag is full, read this: <#1190777644879458445>",
     "uses": 1
   },
-  "Spirit-Petal-order": {
+  {
+    "name": "Spirit-Petal-order",
     "flags": [
       "petal",
       "wand",
@@ -68,7 +74,8 @@
     "content": "Belt > Windy\\/Wand > Wand\\/Windy.\\nGet Windy bee second if you prefer a long term investment, or get Wand second if you prefer immediate improvement.",
     "uses": 3
   },
-  "Best-pattern-for-field-X": {
+  {
+    "name": "Best-pattern-for-field-X",
     "flags": [
       "best-pattern",
       "best-settings",
@@ -81,7 +88,8 @@
     "pinned": true,
     "uses": 12
   },
-  "Walk-errors": {
+  {
+    "name": "Walk-errors",
     "flags": [
       "wrong-spot",
       "walk-error",
@@ -91,7 +99,8 @@
     "content": "Read <#1024406644010008596> if you are having trouble with paths.",
     "uses": 6
   },
-  "Create-a-webhook": {
+  {
+    "name": "Create-a-webhook",
     "flags": [
       "webhook",
       "discord"
@@ -100,7 +109,8 @@
     "content": "Read <#1049124662665297950> for how to create a webhook",
     "uses": 13
   },
-  "Field-drift": {
+  {
+    "name": "Field-drift",
     "flags": [
       "field-drift",
       "drift",
@@ -111,7 +121,8 @@
     "pinned": true,
     "uses": 17
   },
-  "Natro-on-other-platforms": {
+  {
+    "name": "Natro-on-other-platforms",
     "flags": [
       "macOS",
       "linux",
@@ -124,7 +135,8 @@
     "pinned": true,
     "uses": 14
   },
-  "Graphics-settings": {
+  {
+    "name": "Graphics-settings",
     "flags": [
       "graphic",
       "click-yes",
@@ -135,7 +147,8 @@
     "content": "If you are having errors such as planters not being detected, Read this: <#1175946241801195521>",
     "uses": 2
   },
-  "GUI/Y-offset-error": {
+  {
+    "name": "GUI/Y-offset-error",
     "flags": [
       "offset",
       "y-offset",
@@ -145,7 +158,8 @@
     "content": "Read <#1190624759277441024> to fix the Gui Offset warning.",
     "uses": 16
   },
-  "Built-in-pattern-mechanics": {
+  {
+    "name": "Built-in-pattern-mechanics",
     "flags": [
       "natro-patterns",
       "built-in-patterns",
@@ -156,7 +170,8 @@
     "content": "Description of natro's built in patterns: <#1034752734643093544>",
     "uses": 0
   },
-  "Image-file-not-found": {
+  {
+    "name": "Image-file-not-found",
     "flags": [
       "image-file",
       "image-not-found"
@@ -165,7 +180,8 @@
     "content": "For information about 'Image File *x* Not Found', read <#1190260073386225725>.",
     "uses": 1
   },
-  "Install-a-path/pattern": {
+  {
+    "name": "Install-a-path/pattern",
     "flags": [
       "install-pattern",
       "install-path",
@@ -176,7 +192,8 @@
     "content": "You can learn how to install and use a path\\/pattern in Natro here: <#1331441896790298644>",
     "uses": 1
   },
-  "Just-resets": {
+  {
+    "name": "Just-resets",
     "flags": [
       "sisyphus",
       "reset",
@@ -187,7 +204,8 @@
     "pinned": true,
     "uses": 22
   },
-  "Macroing-on-multiple-accounts": {
+  {
+    "name": "Macroing-on-multiple-accounts",
     "flags": [
       "rdp",
       "multiple-account"
@@ -197,7 +215,8 @@
     "pinned": true,
     "uses": 9
   },
-  "Creating-custom-patterns": {
+  {
+    "name": "Creating-custom-patterns",
     "flags": [
       "make-my-pattern",
       "make-your-pattern",
@@ -210,7 +229,8 @@
     "content": "For a resource on making your own patterns\\/paths, read <#1037835913742536724>",
     "uses": 0
   },
-  "Monitor-off": {
+  {
+    "name": "Monitor-off",
     "flags": [
       "no-input",
       "monitor"
@@ -219,7 +239,8 @@
     "content": "Under most circumstances your monitor has to be on for Natro to work. The macro not working with your monitor off is not a bug or a glitch. It is your system not providing a signal for Natro to work properly. If you want to run Natro with your screen off, consider using a RDP, though keep in mind this is an advanced feature, meaning it's not meant for everyone: some computer knowledge is required. <#1069024541935927316>",
     "uses": 0
   },
-  "Nectar-building": {
+  {
+    "name": "Nectar-building",
     "flags": [
       "nectar",
       "planters",
@@ -229,7 +250,8 @@
     "content": "For information about nectar, read <#1071893295237693520>.",
     "uses": 27
   },
-  "OCR-disabled": {
+  {
+    "name": "OCR-disabled",
     "flags": [
       "ocr",
       "disabled"
@@ -238,7 +260,8 @@
     "content": "To our knowledge, it is impossible to install OCR in Windows versions <10. It is possible, but has never been documented.",
     "uses": 0
   },
-  "?sharecode link issue": {
+  {
+    "name": "?sharecode link issue",
     "flags": [
       "share-code",
       "roblox-links",
@@ -249,7 +272,8 @@
     "content": "Roblox changed links to a new format, which is not compatible with natro. To fix it: <#1165057741606375494>. This will be fixed in an upcoming version (see <#1020776618471469238>).",
     "uses": 0
   },
-  "RDP-TCPV6": {
+  {
+    "name": "RDP-TCPV6",
     "flags": [
       "tcpv",
       "rdp"
@@ -258,7 +282,8 @@
     "content": "Roblox uses a 32-bit internet protocol (TCPv4), which means having a 128-bit internet protocol (TCPv6) can cause compatibility issues, such as input lag. Turning it off won't help, you must disable it entirely. Otherwise, buying a new router that deals with this issue or updating the firmware for your current router may fix it. To fix the input lag, run ``cmd prompt`` as administrator, type in this message: ```reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Tcpip6\\Parameters\" /v DisabledComponents /t REG_DWORD /d 255 /f``` and send enter, and then restart your computer afterwards.",
     "uses": 0
   },
-  "Reconnect-issues": {
+  {
+    "name": "Reconnect-issues",
     "flags": [
       "reconnect",
       "disconnect",
@@ -269,7 +294,8 @@
     "pinned": true,
     "uses": 3
   },
-  "Performance-tips": {
+  {
+    "name": "Performance-tips",
     "flags": [
       "lag",
       "performance"
@@ -278,7 +304,8 @@
     "content": "If you are having trouble with roblox lagging, read <#1176006072557908042>.",
     "uses": 4
   },
-  "Virtual-Machine-(VM)-support": {
+  {
+    "name": "Virtual-Machine-(VM)-support",
     "flags": [
       "vm",
       "virtual-machine"
@@ -287,7 +314,8 @@
     "content": "Virtual machines do not work with roblox. You can use [RDP](https://discord.com/channels/1012610056921038868/1069024541935927316) instead as an alternative, but it is an advanced feature, so only do so if you know what you're doing.",
     "uses": 0
   },
-  "Windows-7-webhook": {
+  {
+    "name": "Windows-7-webhook",
     "flags": [
       "win7",
       "webhook",
@@ -299,7 +327,8 @@
     "content": "Discord requires you to use TLS 1.2, which you must install in windows 7 [See here](<https://support.microsoft.com/en-us/topic/update-to-enable-tls-1-1-and-tls-1-2-as-default-secure-protocols-in-winhttp-in-windows-c4bd73d2-31d7-761e-0178-11268bb10392>)",
     "uses": 0
   },
-  "Channel-pins": {
+  {
+    "name": "Channel-pins",
     "flags": [
       "pin"
     ],
@@ -307,7 +336,8 @@
     "content": "Your question/concern is answered in the pinned messages. The pins contain useful information about each channel and certain questions.",
     "uses": 1
   },
-  "Inactive-honey": {
+  {
+    "name": "Inactive-honey",
     "flags": [
       "inactive",
       "in-active",
@@ -317,7 +347,8 @@
     "content": "If your character resets while gathering there is a chance you are getting the inactive honey error, follow this post to fix it <#1190778953225490442>",
     "uses": 4
   },
-  "WMI-error": {
+  {
+    "name": "WMI-error",
     "flags": [
       "wmi"
     ],
@@ -325,7 +356,8 @@
     "content": "The steps to resolve this error can be found in <#1215083407294595103>",
     "uses": 0
   },
-  "Offical-GitHub": {
+  {
+    "name": "Offical-GitHub",
     "flags": [
       "github",
       "download",
@@ -335,7 +367,8 @@
     "content": "Reporting bugs, suggesting new features and the offical download are on [Our GitHub](https://GitHub.com/NatroTeam/NatroMacro/)",
     "uses": 0
   },
-  "Macro-download": {
+  {
+    "name": "Macro-download",
     "flags": [
       "download",
       "latest"
@@ -344,7 +377,8 @@
     "content": "The offical downloads for natro are <#1012613971003584602> and [GitHub](https://github.com/NatroTeam/NatroMacro/zipball/main)",
     "uses": 4
   },
-  "Is-Natro-Macro-a-virus?": {
+  {
+    "name": "Is-Natro-Macro-a-virus?",
     "flags": [
       "safe",
       "virus"
@@ -353,7 +387,8 @@
     "content": "<#1350979842543456256>",
     "uses": 4
   },
-  "Missing-information": {
+  {
+    "name": "Missing-information",
     "flags": [
       "pls-help",
       "need-help",
@@ -367,7 +402,8 @@
     "content": "It would be helpful if you provided more details for your question/problem. Think about what might be useful to the person helping you.\\n\\nYou may want to read <#1332936363171123221>.",
     "uses": 0
   },
-  "Remote-control-(RC)": {
+  {
+    "name": "Remote-control-(RC)",
     "flags": [
       "rc",
       "remote"
@@ -376,7 +412,8 @@
     "content": "The macro can be partially controled with commands sent through Discord. This feature allow you to control a variety of things\\, such as changing variables or even remote reconnection. You can find a guide and troubleshooting steps [here](https://discord.com/channels/1012610056921038868/1191570640596111461)",
     "uses": 2
   },
-  "Videos": {
+  {
+    "name": "Videos",
     "flags": [
       "video",
       "wmv",
@@ -387,7 +424,8 @@
     "pinned": true,
     "uses": 16
   },
-  "Server-guide": {
+  {
+    "name": "Server-guide",
     "flags": [
       "server-help"
     ],
@@ -395,7 +433,8 @@
     "content": "You can get a lot of server information at <id:guide>, such as information about roles or channels.",
     "uses": 0
   },
-  "Adding-an-exception-to-your-antivirus": {
+  {
+    "name": "Adding-an-exception-to-your-antivirus",
     "flags": [
       "exception",
       "antivirus"
@@ -404,7 +443,8 @@
     "content": "You can find instructions to add an exception to your antivirus [here](https://discord.com/channels/1012610056921038868/1021295942965673995/1321030990679904338)",
     "uses": 0
   },
-  "Macro-patches": {
+  {
+    "name": "Macro-patches",
     "flags": [
       "bug",
       "fixes",
@@ -414,7 +454,8 @@
     "content": "To get fixes for different issues, please see <#1323855424960856096>",
     "uses": 1
   },
-  "Red-cannon": {
+  {
+    "name": "Red-cannon",
     "flags": [
       "red-cannon"
     ],
@@ -422,7 +463,8 @@
     "content": "If your macro keeps running past the red cannon, see <#1331478808766713856>",
     "uses": 4
   },
-  "winmgmt": {
+  {
+    "name": "winmgmt",
     "flags": [
       "winmgmt",
       "not-enumerable"
@@ -431,7 +473,8 @@
     "content": "If you get an AHK error saying something along the lines of 'Value not Enumerable' which has a line with 'wigmgmts:', check out <#1331757306177781842>",
     "uses": 0
   },
-  "Roblox-issue": {
+  {
+    "name": "Roblox-issue",
     "flags": [
       "roblox-support",
       "notourproblem"
@@ -440,7 +483,8 @@
     "content": "This is not an issue with the macro, please make a ticket at [Roblox Support](https://www.roblox.com/support) or [on the DevForum](https://devforum.roblox.com/c/bug-reports/10) (if the issue is a bug and you have access)",
     "uses": 1
   },
-  "Early-blue": {
+  {
+    "name": "Early-blue",
     "flags": [
       "blue",
       "hive",
@@ -450,7 +494,8 @@
     "content": "Early blue is by far the most efficent way to quickly get honey while macroing. Not only it blue cheap to start with, only needing a SSA, it is by far the best hive color to macro with as well.",
     "uses": 2
   },
-  "Guides": {
+  {
+    "name": "Guides",
     "flags": [
       "guide",
       "hive",
@@ -463,7 +508,8 @@
     "content": "You can find a lot of helpful guides in <#1265485735121784863>.",
     "uses": 0
   },
-  "Leaks": {
+  {
+    "name": "Leaks",
     "flags": [
       "leak",
       "upcoming",
@@ -473,7 +519,8 @@
     "content": "You can find 'leaks' for BSS in <#1048042133078163507>, which are usually new content or upcoming content. If you want to be pinged upon a new leak releasing, grab the Leaks Ping role from <id:customize>",
     "uses": 0
   },
-  "Staff": {
+  {
+    "name": "Staff",
     "flags": [
       "staff",
       "admin",
@@ -485,4 +532,4 @@
     "content": "Our staff are mainly selected by hand from active, helpful and knowledgeable members. You can increase your chances of getting selected by reporting members, following the rules, and helping others.\\n\\n Occasionally, we will also hold applications. In this case, everyone will be pinged in <#1033176390624870551>.",
     "uses": 2
   }
-}
+]

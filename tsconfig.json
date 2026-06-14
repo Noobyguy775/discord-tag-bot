@@ -33,11 +33,7 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true,
-    "paths": {
-      "@constants": ["./source/constants.ts"],
-      "@data": ["./source/data/*"]
-    }
+    "skipLibCheck": true
   },
   "include": ["source/**/*"],
   "extends": "@tsconfig/node-ts/tsconfig.json"
