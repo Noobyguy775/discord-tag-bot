@@ -33,7 +33,11 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "moduleResolution": "nodenext",
+    "paths": {
+      "@/*": ["./source/*"],
+    }
   },
   "include": ["source/**/*"],
   "extends": "@tsconfig/node-ts/tsconfig.json"

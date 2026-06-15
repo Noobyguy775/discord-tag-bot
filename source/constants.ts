@@ -1,3 +1,4 @@
+await import('dotenv').then(dotenv => dotenv.config());
 const env = process.env
 
 
@@ -14,3 +15,6 @@ export const databaseConfig = {
     },
     autoIndex: false
 }
+
+// Bot owner ID
+export const ownerId = '700425671146471435'

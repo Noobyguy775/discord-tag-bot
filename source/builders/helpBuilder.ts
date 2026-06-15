@@ -1,6 +1,8 @@
-const { MessageFlags, ButtonStyle, SeparatorSpacingSize, ContainerBuilder, TextDisplayBuilder, ButtonBuilder } = require('discord.js')
-const { ButtonCommandBuilder } = require('@builders/ButtonCommandBuilder');
-function helpBuilder(client){
+import { ButtonStyle, SeparatorSpacingSize, ContainerBuilder, TextDisplayBuilder, ButtonBuilder } from 'discord.js'
+
+import HelpButton from '@/commands/interactions/buttons/help-button.js'
+
+export default function helpBuilder() {
     const Container = new ContainerBuilder().setAccentColor(0x9955fc)
     const IntroText = new TextDisplayBuilder().setContent(
         [
@@ -27,12 +29,10 @@ function helpBuilder(client){
     )
     Container.addTextDisplayComponents(CommandsText)
 
-    const CommandsButton = ButtonCommandBuilder.loadButton(client, 'commands')
+
+    const CommandsButton = ButtonBuilder.from(HelpButton.data)
 
     Container.addActionRowComponents(row => row.addComponents(CommandsButton))
 
-    return { components: [Container], flags: MessageFlags.IsComponentsV2 }
+    return Container
 };
-module.exports = {
-    helpBuilder
-}

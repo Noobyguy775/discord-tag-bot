@@ -1,11 +1,13 @@
-// @ts-nocheck
 import fs from 'node:fs';
 import path from 'node:path';
 
 import('dotenv').then(dotenv => dotenv.config());
+const { token, debug, debugtoken } = process.env;
 
 import { Client, Collection, GatewayIntentBits, ActivityType } from 'discord.js';
-const { token, debug, debugtoken } = process.env;
+
+import { type BotClient } from './types.ts'
+
 const client = new Client({
 	intents: [
 		GatewayIntentBits.Guilds,
@@ -20,58 +22,9 @@ const client = new Client({
 			state: `@me for help`
 		}]
 	}
-});
+}) 	as BotClient;
 
-
-client.commands = new Collection();
-client.buttons = new Collection();
-
-import { setTagData } from '@data/js/tags';
-setTagData()
-
-const foldersPath = path.join(__dirname, 'commands'); // ./commands
-const commandFolders = fs.readdirSync(foldersPath); // ./commands/*
-
-for (const folder of commandFolders) {
-	const commandsPath = path.join(foldersPath, folder); // ./command/*/
-	
-	
-	function findJSFiles(dir) {
-		let jsFiles = [];
-		const items = fs.readdirSync(dir);
-		
-		for (const item of items) {
-			const fullPath = path.join(dir, item);
-			const stat = fs.statSync(fullPath);
-			
-			if (stat.isDirectory()) {
-				// Recursively search subdirectories
-				jsFiles = jsFiles.concat(findJSFiles(fullPath));
-			} else if (item.endsWith('.js')) {
-				jsFiles.push(fullPath);
-			}
-		}
-		
-		return jsFiles;
-	}
-	const commandFiles = findJSFiles(commandsPath); // list of all .js files recursively
-	for (const filePath of commandFiles) {
-		const command = require(filePath); // import file contents
-		if ('data' in command && command.data.type == 'Button') {
-			console.log(command.data)
-			client.buttons.set(command.data.customID, command);
-			console.log(`Button loaded: ${command.data.customID}`)
-		} else {
-			if ('data' in command && 'execute' in command) {
-				client.commands.set(command.data.name, command); // add as a command
-				console.log(`Command loaded: ${command.data.name}`);
-			} else {
-				console.warn(`The command at ${filePath} is missing a required "data" or "execute" property.`); // otherwise warn
-			}
-		}
-	}
-}
-console.log('Commands loaded!')
+client.commands = new Collection()
 
 // log events to listen for
 const eventsPath = path.join(__dirname, 'events');
@@ -79,11 +32,13 @@ const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'
 
 for (const file of eventFiles) {
 	const filePath = path.join(eventsPath, file);
-	const event = require(filePath);
+	const event = import(filePath);
 	if (event.once)
 		client.once(event.name, (...args) => event.execute(...args));
 	else
 		client.on(event.name, (...args) => event.execute(...args));
 }
 
-client.login(debug ? debugtoken : token).then(debug ? console.log('Debug mode enabled...') : "");
+client.login(token).then(() => {
+	console.log('Bot logged in successfully');
+});

@@ -1,14 +1,15 @@
 import type { Snowflake } from "discord.js";
+import { Schema } from "mongoose";
 
 
-export const TagSchema = {
+export const TagSchema = new Schema({
     name: String,
     flags: [String],
     regex: String,
     content: String,
     pinned: Boolean,
     uses: Number
-}
+})
 /* Tags stored in each document */
 export interface TagSchema {
     name: string;
@@ -19,11 +20,11 @@ export interface TagSchema {
     uses: number;
 }
 
-export const TagStorageSchema = {
+export const TagStorageSchema = new Schema({
     ID: String,
     scope: String,
     tags: [TagSchema]
-}
+})
 /* Document stored in each database */
 export interface TagStorageSchema {
     ID: Snowflake;

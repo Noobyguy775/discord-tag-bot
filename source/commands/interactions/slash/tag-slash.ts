@@ -32,7 +32,7 @@ const { tagdata, FindTag, IncreaseTagUsage, GetTagRanking, TagEmbedBuilder } = r
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('tag-slash')
+    .setName('tag')
     .setDescription('Retrieve a tag')
     .addStringOption(option =>
 		option.setName('query')

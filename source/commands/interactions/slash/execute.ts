@@ -1,6 +1,6 @@
-const { SlashCommandBuilder, MessageFlags } = require('discord.js');
+import { SlashCommandBuilder, MessageFlags, type ChatInputCommandInteraction } from 'discord.js';
 
-module.exports = {
+export default {
 	data: new SlashCommandBuilder()
 		.setName('execute')
 		.setDescription('[dev] execute js code')
@@ -10,11 +10,11 @@ module.exports = {
 				.setRequired(true)
 		),
 	devonly: true,
-	async execute(interaction) {
+	async execute(interaction: ChatInputCommandInteraction) {
 		try {
-			await eval(interaction.options.getString('code'));
+			await eval(interaction.options.getString('code') || '');
 			await interaction.reply({ content: 'Executed.', flags: MessageFlags.Ephemeral });
-		} catch (error) {
+		} catch (error: any) {
 			console.error(`Eval error:\n${error}`);
 			await interaction.reply({ content: `Error: ${error.message}`, flags: MessageFlags.Ephemeral });
 		}

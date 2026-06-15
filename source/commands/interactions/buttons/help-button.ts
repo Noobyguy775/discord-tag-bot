@@ -1,13 +1,13 @@
-const { ButtonCommandBuilder } = require('@builders/ButtonCommandBuilder');
-const { EmbedBuilder, MessageFlags } = require('discord.js');
+import { EmbedBuilder, MessageFlags, ButtonInteraction, ButtonStyle } from 'discord.js';
+import { ButtonBuilder } from '@discordjs/builders';
 
-module.exports = {
-    data: new ButtonCommandBuilder()
-        .setName('commands')
-        .setDescription('A list of all available commands')
-        .setLabel('Commands'),
-    async execute(button){
-        const commands = button.client.commands
+export default {
+    data: new ButtonBuilder()
+        .setCustomId('commands')
+        .setLabel('Commands')
+        .setStyle(ButtonStyle.Primary)
+        .setEmoji({ name: 'scroll'}),
+    async execute(button: ButtonInteraction) {
         const embed = new EmbedBuilder()
             .setTitle('Commands')
             .setColor(0x9955fc)
@@ -63,4 +63,4 @@ module.exports = {
 
         button.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
     }
-};
+}

@@ -1,9 +1,9 @@
-const { Events, MessageFlags, InteractionType } = require('discord.js');
-const { ownerId } = require('@config')
+import { Events, MessageFlags, InteractionType, type Interaction } from 'discord.js';
+import { ownerId } from '@/constants.js';
 
 module.exports = {
 	name: Events.InteractionCreate,
-	async execute(interaction) {
+	async execute(interaction: Interaction) {
 		console.log(interaction)
 		let command = null;
 		switch (interaction.type) {

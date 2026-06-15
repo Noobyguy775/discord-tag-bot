@@ -2,11 +2,11 @@ const commands = { // [name]: [triggers]
     'tag-chat': ['t', 'tag'],
     'mention': ['help']
 }
-const { Events } = require('discord.js');
+import { Events, type Message } from 'discord.js';
 
 module.exports = {
     name: Events.MessageCreate,
-    async execute(message) {
+    async execute(message: Message) {
         if (message.author.bot) return
 
         if (!message.guild) return;
