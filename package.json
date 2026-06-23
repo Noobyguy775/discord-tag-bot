@@ -24,7 +24,8 @@
   "description": "a simple and fast discord tag bot",
   "devDependencies": {
     "@tsconfig/node-ts": "^23.6.4",
-    "@types/node": "^25.9.3"
+    "@types/node": "^25.9.3",
+    "typescript": "^6.0.3"
   },
   "type": "module"
 }

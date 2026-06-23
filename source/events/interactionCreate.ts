@@ -1,33 +1,34 @@
 import { Events, MessageFlags, InteractionType, type Interaction } from 'discord.js';
 import { ownerId } from '@/constants.js';
 
-module.exports = {
+import * as Interactions from '@/commands/interactions/interactions.js';
+
+
+
+export default {
 	name: Events.InteractionCreate,
 	async execute(interaction: Interaction) {
-		console.log(interaction)
-		let command = null;
+		let command: unknown;
 		switch (interaction.type) {
 			case InteractionType.ApplicationCommand:
 			case InteractionType.ApplicationCommandAutocomplete:
-				command = interaction.client.commands.get(interaction.commandName);
+				command = Interactions[interaction.commandName as keyof typeof Interactions]?.default.data;
 				break;
 			case InteractionType.MessageComponent:
-				command = interaction.client.buttons.get(interaction.customId);
+				command = Interactions[interaction.customId as keyof typeof Interactions]?.default.data;
 				break;
 			default:
 				console.log(`Unhandled interaction:`);
 				console.log(interaction);
 				return;
 		}
-
-		console.log(command)
 		
-		if (!command) {
-			console.error(`No command matching ${interaction.commandName} was found.`);
+		if (!command || !(command instanceof Object) || !('execute' in command) || typeof command.execute !== 'function') {
+			console.error(`No command matching ${'commandName' in interaction ? interaction.commandName : 'unknown'} was found.`);
 			return;
 		}
 
-		if ('devonly' in command && interaction.user != ownerId) {
+		if ('devonly' in command && interaction.user.id != ownerId) {
 			if ('reply' in interaction) {
 				interaction.reply({ content: 'This is a dev only command; you do not have permission to use it', flags: MessageFlags.Ephemeral })
 			} else if (interaction.isAutocomplete()) {
@@ -44,6 +45,7 @@ module.exports = {
 				
 				case InteractionType.ApplicationCommandAutocomplete:
 					console.log(`Autocompleting for: ${interaction.commandName}`);
+					// @ts-expect-error
 					await command.autocomplete(interaction)
 					break;
 				case InteractionType.MessageComponent:

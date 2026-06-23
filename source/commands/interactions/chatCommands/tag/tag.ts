@@ -30,7 +30,7 @@ const { SlashCommandBuilder,
     chatInputApplicationCommandMention } = require('discord.js');
 const { tagdata, FindTag, IncreaseTagUsage, GetTagRanking, TagEmbedBuilder } = require('@data/js/tags');
 
-module.exports = {
+export default {
     data: new SlashCommandBuilder()
     .setName('tag')
     .setDescription('Retrieve a tag')
