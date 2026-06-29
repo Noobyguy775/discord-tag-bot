@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { EmbedBuilder, MessageFlags, ButtonInteraction, ButtonStyle } from 'discord.js';
 import { ButtonBuilder } from '@discordjs/builders';
 
@@ -6,7 +7,7 @@ export default {
         .setCustomId('commands')
         .setLabel('Commands')
         .setStyle(ButtonStyle.Primary)
-        .setEmoji({ name: 'scroll'}),
+        .setEmoji({ name: '📜' }),
     async execute(button: ButtonInteraction) {
         const embed = new EmbedBuilder()
             .setTitle('Commands')

@@ -5,31 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Start bot debug",
-            "program": "${workspaceFolder}/source/index.js",
+            "name": "Deploy command",
             "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
+            "runtimeArgs": [
+                "run",
+                "deploy"
             ],
-            "type": "node"
-        },
-        {
-            "name": "Update bot commands",
-            "program": "${workspaceFolder}/source/deploy-commands.js",
-            "request": "launch",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "type": "node"
-        },
-        {
-            "name": "Test DB",
-            "program": "${workspaceFolder}/source/data/database.js",
-            "request": "launch",
+            "runtimeExecutable": "npm",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "type": "node"
         }
+        
     ]
 }

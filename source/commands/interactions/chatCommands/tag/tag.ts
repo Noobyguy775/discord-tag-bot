@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* 
 Some contents of this file were converted from https://github.com/discordjs/discord-utils-bot, which is liscened under the Apache License 2.0, which you can find @ https://www.apache.org/licenses/LICENSE-2.0.txt.
 

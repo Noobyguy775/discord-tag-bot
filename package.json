@@ -3,15 +3,18 @@
   "version": "2.0.0",
   "main": "source/index.js",
   "scripts": {
-    "start": "node dist/index.js",
-    "build": "tsc",
+    "start": "tsx --env-file .env source/index.ts",
+    "start-dev": "tsx --env-file .env.local source/index.ts",
+    "deploy": "tsx --env-file .env source/deploy-commands.ts",
+    "deploy-dev": "tsx --env-file .env.local source/deploy-commands.ts",
     "dev": "tsc --watch",
-    "database": "node dist/data/database.js"
+    "type-check": "tsc --noEmit",
+    "lint": "eslint . --ext .ts"
   },
   "author": "Noobyguy775",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "^14.19.1",
+    "discord.js": "^14.26.4",
     "dotenv": "^17.4.2",
     "mongoose": "^9.7.0"
   },
@@ -25,7 +28,11 @@
   "devDependencies": {
     "@tsconfig/node-ts": "^23.6.4",
     "@types/node": "^25.9.3",
+    "tsx": "^4.22.4",
     "typescript": "^6.0.3"
   },
-  "type": "module"
+  "type": "module",
+  "allowScripts": {
+    "esbuild@0.28.1": true
+  }
 }

@@ -34,5 +34,5 @@ export default function helpBuilder() {
 
     Container.addActionRowComponents(row => row.addComponents(CommandsButton))
 
-    return Container
+    return Container.toJSON()
 };

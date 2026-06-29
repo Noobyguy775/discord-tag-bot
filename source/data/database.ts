@@ -3,14 +3,13 @@ import * as Mongoose from 'mongoose';
 import { databaseURL, databaseConfig } from '../constants.ts';
 import { TagStorageSchema, type Scope, type Snowflake } from './schemas.ts';
 
-// temp fix for now ?
+// temp fix for now?
 import dns from 'node:dns/promises';
 dns.setServers(["1.1.1.1"])
 
 export const databaseConnection = await connect()
 async function connect() {
     return await Mongoose.connect(databaseURL, { 
-        dbName: 'tags',
         ...databaseConfig
     }).catch(err => {
         console.error("Failed to connect to MongoDB:", err)

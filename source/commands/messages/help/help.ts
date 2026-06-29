@@ -8,6 +8,6 @@ export default {
     description: 'Displays a list of commands and bot details.'
   },
   execute(message: Message){
-    message.reply({ components: [helpBuilder()], flags: MessageFlags.IsComponentsV2 & MessageFlags.Ephemeral });
+    message.reply({ components: [helpBuilder()], flags: MessageFlags.IsComponentsV2 });
   }
 }

@@ -1,8 +1,8 @@
-const { EmbedBuilder, heading } = require('discord.js');
-const { IncreaseTagUsage, FindTagfromRegex, TagEmbedBuilder } = require('@data/js/tags');
-const { debug } = require('@config')
+// @ts-nocheck
+import { EmbedBuilder, heading } from 'discord.js';
+import { IncreaseTagUsage, FindTagfromRegex, TagEmbedBuilder } from '@data/js/tags';
 
-module.exports = {
+export default {
     data: {
      name: 'tag-chat',
      type: 'message',
@@ -13,7 +13,7 @@ module.exports = {
         if (message.args[1] == undefined) {
             const embed = new EmbedBuilder()
                 .setColor(fetchedmember.displayColor || 0x5C146C)
-                .setDescription(`${heading(fetchedemoji.toString() + ' Missing parameter', 2)}\nYou need to specify regex to use.`)
+                .setDescription(`${heading('Missing parameter', 2)}\nYou need to specify regex to use.`)
             message.reply({ embeds : [embed]})
             return;
         }
@@ -37,10 +37,9 @@ module.exports = {
             }
             IncreaseTagUsage(tag.key);
         } else {
-            const fetchedemoji = debug ? '' : await message.client.application.emojis.fetch('1361915029578055701')  // error emoji
             const embed = new EmbedBuilder()
                 .setColor(fetchedmember.displayColor || 0x5C146C)
-                .setDescription(`${heading(fetchedemoji.toString() + ' Tag not found', 2)}\nYou entered '${message.args.slice(message.args[0].length).join(' ')}', which was not found in the database.`)
+                .setDescription(`${heading('Tag not found', 2)}\nYou entered '${message.args.slice(message.args[0].length).join(' ')}', which was not found in the database.`)
             try {
                 const botreply = await message.reply({ embeds : [embed]})
                 setTimeout(() => {

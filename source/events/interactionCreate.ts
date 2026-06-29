@@ -1,26 +1,29 @@
 import { Events, MessageFlags, InteractionType, type Interaction } from 'discord.js';
-import { ownerId } from '@/constants.js';
 
 import * as Interactions from '@/commands/interactions/interactions.js';
-
-
 
 export default {
 	name: Events.InteractionCreate,
 	async execute(interaction: Interaction) {
 		let command: unknown;
-		switch (interaction.type) {
-			case InteractionType.ApplicationCommand:
-			case InteractionType.ApplicationCommandAutocomplete:
-				command = Interactions[interaction.commandName as keyof typeof Interactions]?.default.data;
+		for (const [_, cmd] of Object.entries(Interactions)) {
+			switch (interaction.type) {
+				case InteractionType.ApplicationCommandAutocomplete:
+				case InteractionType.ApplicationCommand:
+					if ('name' in cmd.default.data && cmd.default.data.name === interaction.commandName) {
+						command = cmd.default;
+						break;
+					}
 				break;
-			case InteractionType.MessageComponent:
-				command = Interactions[interaction.customId as keyof typeof Interactions]?.default.data;
+				case InteractionType.ModalSubmit:
+				case InteractionType.MessageComponent:
+					if ('customId' in cmd.default.data && cmd.default.data.customId === interaction.customId) {
+						command = cmd.default;
+						break;
+					}
 				break;
-			default:
-				console.log(`Unhandled interaction:`);
-				console.log(interaction);
-				return;
+			}
+			if (command) break;
 		}
 		
 		if (!command || !(command instanceof Object) || !('execute' in command) || typeof command.execute !== 'function') {
@@ -28,14 +31,6 @@ export default {
 			return;
 		}
 
-		if ('devonly' in command && interaction.user.id != ownerId) {
-			if ('reply' in interaction) {
-				interaction.reply({ content: 'This is a dev only command; you do not have permission to use it', flags: MessageFlags.Ephemeral })
-			} else if (interaction.isAutocomplete()) {
-				interaction.respond([])
-			}
-			return;
-		}
 		try {
 			switch (interaction.type) {
 				case InteractionType.ApplicationCommand:
@@ -44,9 +39,10 @@ export default {
 					break;
 				
 				case InteractionType.ApplicationCommandAutocomplete:
-					console.log(`Autocompleting for: ${interaction.commandName}`);
-					// @ts-expect-error
-					await command.autocomplete(interaction)
+					if ('autocomplete' in command && typeof command.autocomplete === 'function') {
+						console.log(`Autocompleting for: ${interaction.commandName}`);
+						await command.autocomplete(interaction);
+					}
 					break;
 				case InteractionType.MessageComponent:
 					console.log(`Executing message component: ${interaction.customId}`)

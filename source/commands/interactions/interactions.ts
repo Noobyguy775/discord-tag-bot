@@ -1,2 +1,3 @@
-export * from './buttons/buttons.js';
-export * from './chatCommands/chatCommands.js';
+export * from './buttons/index.ts';
+export * from './chatCommands/index.ts';
+export * from './modals/index.ts';
