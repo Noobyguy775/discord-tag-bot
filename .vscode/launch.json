@@ -5,11 +5,24 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Deploy command",
+            "name": "Deploy commands - Dev",
             "request": "launch",
             "runtimeArgs": [
                 "run",
-                "deploy"
+                "deploy-dev"
+            ],
+            "runtimeExecutable": "npm",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node"
+        },
+        {
+            "name": "Start bot - Dev",
+            "request": "launch",
+            "runtimeArgs": [
+                "run",
+                "start-dev"
             ],
             "runtimeExecutable": "npm",
             "skipFiles": [

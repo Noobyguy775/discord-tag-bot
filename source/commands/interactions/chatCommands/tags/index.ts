@@ -48,7 +48,7 @@ export default {
         const subcommand = interaction.options.getSubcommand() as tagCommands;
         switch (subcommand) {
             case 'add':
-                import('./new.js').then(module => module.default(interaction))
+                await import('./new.ts').then(module => module.default(interaction))
         }
         return "";
     }

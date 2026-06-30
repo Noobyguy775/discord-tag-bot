@@ -1,6 +1,6 @@
 import { ButtonStyle, SeparatorSpacingSize, ContainerBuilder, TextDisplayBuilder, ButtonBuilder } from 'discord.js'
 
-import HelpButton from '@/commands/interactions/buttons/help/help.js'
+import HelpButton from '@/commands/interactions/buttons/help/commands.ts'
 
 export default function helpBuilder() {
     const Container = new ContainerBuilder().setAccentColor(0x9955fc)

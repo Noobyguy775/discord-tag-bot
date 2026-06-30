@@ -4,9 +4,7 @@ const { token } = process.env;
 import { Client, GatewayIntentBits, ActivityType, Events } from 'discord.js';
 
 const client = new Client({
-	intents: [
-		GatewayIntentBits.MessageContent
-	],
+	intents: [ GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessages, GatewayIntentBits.Guilds ],
 	presence: {
 		activities: [{
 			type: ActivityType.Custom,

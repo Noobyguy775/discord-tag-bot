@@ -1,12 +1,13 @@
 import { type Message } from 'discord.js';
 
-export interface messageCommand {
+export interface messageCommand extends Message {
     data: {
         name: string,
-        description?: string
+        description?: string,
+        type: 'message',
+        triggers: Array<string>
     },
-    execute: (message: Message) => Promise<void>,
-    args: string[],
+    execute: (message: Message) => unknown,
 }
 
-export type messageCommandData = Message & messageCommand
+export type messageCommandWithArgs = messageCommand & { args: Array<string> }

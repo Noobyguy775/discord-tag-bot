@@ -3,11 +3,12 @@ import { type Message, MessageFlags } from 'discord.js';
 
 export default {
   data: {
-    name: 'help-chat',
+    name: 'help',
     type: 'message',
+    triggers: ['help'],
     description: 'Displays a list of commands and bot details.'
   },
-  execute(message: Message){
-    message.reply({ components: [helpBuilder()], flags: MessageFlags.IsComponentsV2 });
+  async execute(message: Message){
+    await message.reply({ components: [helpBuilder()], flags: MessageFlags.IsComponentsV2 });
   }
 }
