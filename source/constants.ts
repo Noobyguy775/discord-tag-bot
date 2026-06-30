@@ -9,7 +9,7 @@ export const databaseURL = `mongodb+srv://cluster0.37vwudh.mongodb.net/`
 // MongoDB connection config
 // @see https://mongoosejs.com/docs/api/mongoose.html#Mongoose.prototype.connect()
 export const databaseConfig = {
-    databaseName: env["db_name"] || 'tags',
+    dbName: env["db_name"] || 'tags',
     auth: {
         username: env["db_username"] || 'admin',
         password: env["db_password"] || ''

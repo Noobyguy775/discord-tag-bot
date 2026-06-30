@@ -40,7 +40,12 @@ export async function findDocument(model: typeof UserModel | typeof ServerTagMod
     return await model.findOne({ ID: id }).exec()
 }
 
+import { scopeExists, newScope } from './functions.ts'
+
 export async function findContext(scope: Scope, id: Snowflake) {
+    if (!await scopeExists(id, scope)) {
+        await newScope(id, scope);
+    }
     return await findDocument(findModel(scope), id)
 }
 

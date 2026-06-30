@@ -1,4 +1,4 @@
-import { type Snowflake, type Scope } from '../schemas.ts'
+import type { Snowflake, Scope } from '../schemas.ts'
 
 import { findModel } from '../database.ts';
 

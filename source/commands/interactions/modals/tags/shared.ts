@@ -40,11 +40,10 @@ const regexInput = new TextInputBuilder()
     .setCustomId('tagRegex')
     .setMaxLength(1000)
     .setStyle(TextInputStyle.Paragraph)
-    .setPlaceholder('(help\\s?(me|us)?|faq)')
 
 export const regexLabel = new LabelBuilder()
     .setLabel('Regular expression')
-    .setDescription('A regex pattern that will trigger the tag when sent with a chat message. For help, visit \'regextutorial.org\'. Case-insensitive is applied by default.')
+    .setDescription('A regex pattern that will trigger the tag when sent with a chat message.')
     .setTextInputComponent(regexInput)
 
 const pinnedInput = new CheckboxBuilder()
