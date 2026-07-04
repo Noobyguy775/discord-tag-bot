@@ -1,1 +1,1 @@
-export * from './tags/newTag.ts';
+export * as newTag from './tags/newTag.ts';

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /* 
 Some contents of this file were converted from https://github.com/discordjs/discord-utils-bot, which is liscened under the Apache License 2.0, which you can find @ https://www.apache.org/licenses/LICENSE-2.0.txt.
 
@@ -19,17 +18,12 @@ Changes:
 * 
 */
 
-const { SlashCommandBuilder,
-    MessageFlags,
-    inlineCode,
-    heading,
-    HeadingLevel,
-    ContainerBuilder,
-    TextDisplayBuilder,
-    SeparatorSpacingSize,
-    quote,
-    chatInputApplicationCommandMention } = require('discord.js');
-const { tagdata, FindTag, IncreaseTagUsage, GetTagRanking, TagEmbedBuilder } = require('@data/js/tags');
+import { SlashCommandBuilder, MessageFlags } from 'discord.js';
+import type { AutocompleteInteraction, ChatInputCommandInteraction } from 'discord.js';
+
+import { findAllTags, findTagContent } from '@/data/database.js'
+
+// import { tagdata, FindTag, IncreaseTagUsage, GetTagRanking, TagEmbedBuilder } from '@data/js/tags';
 
 export default {
     data: new SlashCommandBuilder()
@@ -45,48 +39,61 @@ export default {
             .setDescription('User to mention'))
     .addBooleanOption(option =>
         option.setName('private')
-            .setDescription('Instead of sending the tag to the channel, view the tag privately'))
-    .addBooleanOption(option =>
-        option.setName('view-info')
-            .setDescription('view various information about the tag, including regex, flags, content, and usage statistics')),
+            .setDescription('Instead of sending the tag to the channel, view the tag privately')),
     
-    async autocomplete(interaction) {
-        const input = interaction.options.getFocused();
-        const outputlist = [];
+    async autocomplete(interaction: AutocompleteInteraction<"cached">) {
+        const input = interaction.options.getFocused().trim();
+        const outputlist: Array<{ name: string; value: string }> = [];
         if (input.length) {
             const cleaninput = input.replaceAll(/\s+/g, '-').toLowerCase();
-            const namematches = [];
-            const flagmatches = [];
-            const regexmatches = [];
+            const tagdata = await findAllTags(interaction)
 
-            for (const [name, tag] of tagdata.entries()) {
-                if (name.toLowerCase() === cleaninput) {
-                    namematches.push({ name: '✅｜' + name.replaceAll('-', ' '),  value: name })
-                } else if (tag.flags.some((text) => text.toLowerCase().includes(cleaninput)) || name.toLowerCase().includes(cleaninput)) {
-                    flagmatches.push({ name: '🚩｜' + name.replaceAll('-', ' '),  value: name })
-                } else if (new RegExp(tag.regex, 'i').test(cleaninput)) {
-                    regexmatches.push({ name: '🔍｜' + name.replaceAll('-', ' '),  value: name })
-                }
+            // prioritize user tags first
+            if (tagdata.user) {
+                outputlist.push(tagdata.user.FindByName(cleaninput))
+                outputlist.push(...tagdata.user.FindByFlag(cleaninput))
+                outputlist.push(...tagdata.user.FindByRegex(cleaninput))
             }
-            outputlist.push(...namematches, ...flagmatches, ...regexmatches);
+
+            // then server tags
+            if (tagdata.server) {
+                outputlist.push(tagdata.server.FindByName(cleaninput))
+                outputlist.push(...tagdata.server.FindByFlag(cleaninput))
+                outputlist.push(...tagdata.server.FindByRegex(cleaninput))
+            }
         } else {
-            outputlist.push(
-                ...tagdata.filter((tag) => tag.pinned)
-                .map((_, key) => ({
-                    name: '📌｜' + key.replaceAll('-', ' '),
-                    value: key,
-                })),
-            )
+            const tagdata = await findAllTags(interaction)
+            if (tagdata.user)
+                outputlist.push(...tagdata.user.GetPinned())
+            if (tagdata.server)
+                outputlist.push(...tagdata.server.GetPinned())
         }
         await interaction.respond(outputlist.slice(0, 25))
     },
-    async execute(interaction) {
-        const tag = FindTag(interaction.options.getString('query').trim().toLowerCase())
+    async execute(interaction: ChatInputCommandInteraction<"cached">) {
+        const query = interaction.options.getString('query', true).trim().toLowerCase();
+        const tag = await findTagContent(interaction, query)
         if (!tag)
             return await interaction.reply({content: 'Tag not found, make sure you used an autocomplete!',  flags: MessageFlags.Ephemeral})
 
         const fetchedmember = await interaction.guild.members.fetch(interaction.user.id)
-        if (interaction.options.getBoolean('view-info') == true) {
+
+        // tag
+        const tagEmbed = TagEmbedBuilder(tag, fetchedmember)
+    
+        const payload = {
+            content: (interaction.options.getMember('mention') ? interaction.options.getMember('mention')?.toString() : null),
+            embeds: [tagEmbed],
+            flags: (interaction.options.getBoolean('private') ? MessageFlags.Ephemeral : null),
+        };
+
+        await interaction.reply(payload);
+
+        await tag.IncreaseUsage();
+    }
+};
+
+/*if (interaction.options.getBoolean('view-info') == true) {
             // tag info
             const taginfo = new ContainerBuilder();
             taginfo.setAccentColor(fetchedmember.displayColor || 0x5C146C);
@@ -128,20 +135,4 @@ export default {
             taginfo.addTextDisplayComponents(tagusage);
 
             await interaction.reply({ components: [taginfo], flags: MessageFlags.Ephemeral+MessageFlags.IsComponentsV2 });
-        } else {
-            tag.member = fetchedmember
-            // tag
-            const tagEmbed = TagEmbedBuilder(tag)
-    
-            const payload = {
-                content: (interaction.options.getMember('mention') ? interaction.options.getMember('mention').toString() : null),
-                embeds: [tagEmbed],
-                flags: (interaction.options.getBoolean('private') ? MessageFlags.Ephemeral : null),
-            };
-
-            await interaction.reply(payload);
-
-            IncreaseTagUsage(tag.key);
-        }
-    }
-};
+        }*/

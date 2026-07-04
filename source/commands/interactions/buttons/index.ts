@@ -1,1 +1,1 @@
-export * as HelpButton from './help/commands.ts';
+export * as ListCommands from './help/commands.ts';

@@ -4,9 +4,9 @@
   "main": "source/index.js",
   "scripts": {
     "start": "tsx --env-file .env source/index.ts",
-    "start-dev": "tsx --env-file .env.local source/index.ts",
+    "start-dev": "tsx --env-file .env.local --trace-warnings source/index.ts",
     "deploy": "tsx --env-file .env source/deploy-commands.ts",
-    "deploy-dev": "tsx --env-file .env.local source/deploy-commands.ts",
+    "deploy-dev": "tsx --env-file .env.local --trace-warnings source/deploy-commands.ts",
     "dev": "tsc --watch",
     "type-check": "tsc --noEmit",
     "lint": "eslint . --ext .ts"
