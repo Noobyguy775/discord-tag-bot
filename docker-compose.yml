@@ -1,0 +1,19 @@
+services:
+  tag-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    pull_policy: build
+    container_name: tag-bot
+    init: true
+    restart: always
+    environment:
+      - "token=${BOT_TOKEN}"
+      - "clientId=${CLIENT_ID}"
+      - "ownerId=${OWNER_ID}"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
