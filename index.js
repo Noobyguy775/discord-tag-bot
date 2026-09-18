@@ -4,9 +4,7 @@ require('dotenv').config();
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const { token, debug, debugtoken } = process.env;
 const client = new Client({ intents: [
-	GatewayIntentBits.Guilds,
-	GatewayIntentBits.GuildMessages,
-	GatewayIntentBits.MessageContent
+	GatewayIntentBits.Guilds
 ]});
 
 client.commands = new Collection();
