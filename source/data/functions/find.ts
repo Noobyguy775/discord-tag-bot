@@ -1,31 +1,33 @@
-import type { Snowflake, Scope, TagSchema } from '../schemas.ts'
+import type { Scope } from '../schemas.ts'
 
-import { findModel } from '../database.ts';
-import type { Interaction } from 'discord.js';
+import { TagModel } from '../database.ts';
+
+import type { Interaction , Snowflake } from 'discord.js';
+import type { ObjectId } from 'mongoose';
 
 export async function scopeExists(snowflake: Snowflake, scope: Scope) {
-    const model = findModel(scope)
-    return await model.exists({ ID: snowflake })
+    return await TagModel.exists({ ID: snowflake, scope })
 }
 
-
-const defaultfindQuery = { tags: { name: 1, flags: 1, regex: 1 } }
-
-export async function findTags(snowflake: Snowflake, scope: Scope, query: Object = defaultfindQuery) {
-    const model = findModel(scope)
-    const doc = await model.findOne({ ID: snowflake }, query).exec()
-    return doc ?? null
+export async function fetchEntry(snowflake: Snowflake, scope: Scope) {
+    return await TagModel.where().findContext(snowflake, scope).exec()
 }
 
-export async function findAllTags(interaction: Interaction<"cached">, query: Object = defaultfindQuery) {
-    const user = await findTags(interaction.user.id, "user", query)
-    const server = await findTags(interaction.guildId, "server", query)
+export async function fetchDualContext(interaction: Interaction<"cached">) {
+    const user = await fetchEntry(interaction.user.id, "user")
+    const server = await fetchEntry(interaction.guildId, "server")
 
     return {user, server}
 }
 
-export async function findTagContent(interaction: Interaction<"cached">, name: TagSchema["name"]) {
-    const tag = await findAllTags(interaction, { tags: { name: 1, content: 1 } })
-    .then((tags) => tags.find((tag) => tag.name === name))
-    return tag || null
+export async function findTag(interaction: Interaction<"cached">, tagId: ObjectId) {
+    const { user, server } = await fetchDualContext(interaction)
+
+    const allTags = user.concat(server)
+    
+    if (allTags.length > 0) {
+        return allTags.find((tag) => tag._id === tagId) || null
+    } else {
+        return null
+    }
 }

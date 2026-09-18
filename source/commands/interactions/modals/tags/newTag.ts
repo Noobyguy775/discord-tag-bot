@@ -4,7 +4,7 @@ import { contentLabel, nameLabel, regexLabel, pinnedLabel, flagsLabel } from './
 
 import { addTags } from '@/data/database.js';
 
-import type { Scope, TagSchema } from '@/data/schemas.js';
+import type { Scope } from '@/data/schemas.js';
 
 export default {
     data: {

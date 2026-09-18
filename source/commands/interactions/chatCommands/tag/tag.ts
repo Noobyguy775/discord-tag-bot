@@ -18,12 +18,14 @@ Changes:
 * 
 */
 
-import { SlashCommandBuilder, MessageFlags } from 'discord.js';
+import { SlashCommandBuilder, InteractionContextType } from 'discord.js';
 import type { AutocompleteInteraction, ChatInputCommandInteraction } from 'discord.js';
 
-import { findAllTags, findTagContent } from '@/data/database.js'
+import { findAllTags } from '@/data/database.js'
 
-// import { tagdata, FindTag, IncreaseTagUsage, GetTagRanking, TagEmbedBuilder } from '@data/js/tags';
+import { TagEmbedBuilder } from '@/commands/shared/tags/index.js'
+import type { TagSchema } from '@/data/schemas.js';
+import type { HydratedDocument } from 'mongoose';
 
 export default {
     data: new SlashCommandBuilder()
@@ -33,58 +35,81 @@ export default {
 		option.setName('query')
 			.setDescription('Phrase to search for')
 			.setAutocomplete(true)
-            .setRequired(true))
+            .setRequired(true)
+    )
     .addUserOption(option => 
         option.setName('mention')
-            .setDescription('User to mention'))
+            .setDescription('User to mention')
+    )
     .addBooleanOption(option =>
         option.setName('private')
-            .setDescription('Instead of sending the tag to the channel, view the tag privately')),
+            .setDescription('Instead of sending the tag to the channel, view the tag privately')
+    )
+    .setContexts([InteractionContextType.Guild, InteractionContextType.BotDM, InteractionContextType.PrivateChannel]),
     
     async autocomplete(interaction: AutocompleteInteraction<"cached">) {
         const input = interaction.options.getFocused().trim();
         const outputlist: Array<{ name: string; value: string }> = [];
+
+        function appendChoice(value: typeof TagSchema, emoji: string) {
+            if (!value) return;
+
+            const entries: typeof TagSchema[] = Array.isArray(value) ? value : [value];
+            for (const entry of entries) {
+                entry.
+                const tagName = entry.name;
+                if (typeof tagName !== 'string' || tagName.length === 0) continue;
+
+                outputlist.push({ name: `${emoji}|${tagName}`, value: entry.toObject()._id });
+            }
+        }
+
         if (input.length) {
             const cleaninput = input.replaceAll(/\s+/g, '-').toLowerCase();
             const tagdata = await findAllTags(interaction)
 
             // prioritize user tags first
             if (tagdata.user) {
-                outputlist.push(tagdata.user.FindByName(cleaninput))
-                outputlist.push(...tagdata.user.FindByFlag(cleaninput))
-                outputlist.push(...tagdata.user.FindByRegex(cleaninput))
+                appendChoice(tagdata.user.FindByName(cleaninput), '✅')
+                appendChoice(tagdata.user.FindByFlag(cleaninput), '🚩')
+                appendChoice(tagdata.user.FindByRegex(cleaninput), '🔍')
             }
 
             // then server tags
             if (tagdata.server) {
-                outputlist.push(tagdata.server.FindByName(cleaninput))
-                outputlist.push(...tagdata.server.FindByFlag(cleaninput))
-                outputlist.push(...tagdata.server.FindByRegex(cleaninput))
+                appendChoice(tagdata.server.FindByName(cleaninput), '✅')
+                appendChoice(tagdata.server.FindByFlag(cleaninput), '🚩')
+                appendChoice(tagdata.server.FindByRegex(cleaninput), '🔍')
             }
         } else {
             const tagdata = await findAllTags(interaction)
             if (tagdata.user)
-                outputlist.push(...tagdata.user.GetPinned())
+                appendChoice(tagdata.user.GetPinned(), '📌')
             if (tagdata.server)
-                outputlist.push(...tagdata.server.GetPinned())
+                appendChoice(tagdata.server.GetPinned(), '📌')
         }
         await interaction.respond(outputlist.slice(0, 25))
     },
-    async execute(interaction: ChatInputCommandInteraction<"cached">) {
+    async execute(interaction: ChatInputCommandInteraction<"cached">): Promise<void> {
         const query = interaction.options.getString('query', true).trim().toLowerCase();
         const tag = await findTagContent(interaction, query)
-        if (!tag)
-            return await interaction.reply({content: 'Tag not found, make sure you used an autocomplete!',  flags: MessageFlags.Ephemeral})
+        if (!tag){
+            await interaction.reply({ content: 'Tag not found, make sure you used an autocomplete!', ephemeral: true });
+            return;
+        }
 
-        const fetchedmember = await interaction.guild.members.fetch(interaction.user.id)
+        const fetchedmember = interaction.inGuild()
+            ? await interaction.guild.members.fetch(interaction.user.id)
+            : null;
 
         // tag
-        const tagEmbed = TagEmbedBuilder(tag, fetchedmember)
+        const tagEmbed = TagEmbedBuilder(tag, fetchedmember?.displayColor, interaction.user.id)
     
+        const mention = interaction.options.getMember('mention')?.toString();
         const payload = {
-            content: (interaction.options.getMember('mention') ? interaction.options.getMember('mention')?.toString() : null),
             embeds: [tagEmbed],
-            flags: (interaction.options.getBoolean('private') ? MessageFlags.Ephemeral : null),
+            ...(mention ? { content: mention } : {}),
+            ...(interaction.options.getBoolean('private') ? { ephemeral: true } : {}),
         };
 
         await interaction.reply(payload);

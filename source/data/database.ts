@@ -1,7 +1,7 @@
 import * as Mongoose from 'mongoose';
 
 import { databaseURL, databaseConfig } from '../constants.ts';
-import { TagStorageSchema, type Scope, type Snowflake } from './schemas.ts';
+import { TagStorageSchema } from './schemas.ts';
 
 // temp fix for now?
 import dns from 'node:dns/promises';
@@ -17,36 +17,6 @@ async function connect() {
     })
 }
 
-const { ServerTagModel, UserModel } = await applyModels()
-async function applyModels() {
-    const UserModel = databaseConnection.model('UserTag', TagStorageSchema)
-    const ServerTagModel = databaseConnection.model('ServerTag', TagStorageSchema)
-
-    return { UserModel, ServerTagModel }
-}
-
-export function findModel(scope: Scope) {
-    switch (scope) {
-        case "user": {
-            return UserModel
-        }
-        case "server": {
-            return ServerTagModel
-        }
-    }
-}
-
-export async function findDocument(model: typeof UserModel | typeof ServerTagModel, id: Snowflake) {
-    return await model.findOne({ ID: id }).exec()
-}
-
-import { scopeExists, newScope } from './functions.ts'
-
-export async function findContext(scope: Scope, id: Snowflake) {
-    if (!await scopeExists(id, scope)) {
-        await newScope(id, scope);
-    }
-    return await findDocument(findModel(scope), id)
-}
+export const TagModel = databaseConnection.model('TagStorage', TagStorageSchema)
 
 export * from './functions.ts'
